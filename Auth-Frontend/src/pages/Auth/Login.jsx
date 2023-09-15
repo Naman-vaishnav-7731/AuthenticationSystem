@@ -1,13 +1,11 @@
 import React from 'react';
-import { Form, Button, Col, Container, Alert } from 'react-bootstrap';
+import { Form, Button, Col, Container } from 'react-bootstrap';
 import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-  username: Yup.string()
-    .required('Username is required'),
-  password: Yup.string()
-    .required('Password is required'),
+  username: Yup.string().required('Username is required'),
+  password: Yup.string().required('Password is required'),
 });
 
 const initialValues = {
@@ -21,7 +19,7 @@ const Login = () => {
     console.log('Submitted values:', values);
     setSubmitting(false);
   };
-
+  
   return (
     <Container>
       <h2>Login</h2>
@@ -32,7 +30,6 @@ const Login = () => {
       >
         {({ handleSubmit, isSubmitting }) => (
           <Form noValidate onSubmit={handleSubmit}>
-            <Form.Row>
               <Form.Group as={Col} controlId="username">
                 <Form.Label>Username</Form.Label>
                 <Field
@@ -43,9 +40,8 @@ const Login = () => {
                 />
                 <ErrorMessage name="username" component="div" className="text-danger" />
               </Form.Group>
-            </Form.Row>
 
-            <Form.Row>
+
               <Form.Group as={Col} controlId="password">
                 <Form.Label>Password</Form.Label>
                 <Field
@@ -56,7 +52,6 @@ const Login = () => {
                 />
                 <ErrorMessage name="password" component="div" className="text-danger" />
               </Form.Group>
-            </Form.Row>
 
             <Button type="submit" disabled={isSubmitting}>
               Login
